@@ -1,85 +1,79 @@
-opcao = 0
-manifestacao = []
-sujestoes = []
-reclamacoes = []
-elogios = []
-criarmanifestacao = []
-protocolo = []
-addreclamacao = []
-addsujestao = []
-addelogio = []
-nome = []
+from encodings import search_function
+from msilib.schema import Class
+
+option = 5
+listOfAllManifestations = []
+
+
+class manifestation(object):
+    def __init__(self, typeInput, NameInput, protocolInput, content):
+        self.type = typeInput
+        self.name = NameInput
+        self.protocol = protocolInput
+        self.content = content
+
+
 while True:
-    if opcao >= 7:
-        pass
-    else:
-        print('\033[33m''======= OUVIDORIA ABC =======''\033[0;0m')
-    print()
-    print('\033[33m''1) LISTAR TODAS AS MANIFESTAÇÕES''\033[0;0m')
-    print()
-    print('\033[33m''2) LISTAR TODAS AS SUJESTÕES''\033[0;0m')
-    print()
-    print('\033[33m''3) LISTAR TODAS AS RECLAMAÇÕES''\033[0;0m')
-    print()
-    print('\033[33m''4) LISTAR TODOS OS ELOGIOS''\033[0;0m')
-    print()
-    print('\033[33m''5) ENVIAR UMA MANIFESTAÇÃO (criar uma nova)''\033[0;0m')
-    print()
-    print('\033[33m''6) PESQUISAR PELO NÚMERO DO PROTOCOLO (ID)''\033[0;0m')
-    print()
-    print('\033[33m''7) SAIR''\033[0;0m')
-    print()
-    opcao = int(input('\033[33m''DIGITE A OPÇÃO DESEJADA: ''\033[0;0m'))
+    if 0 < option > 4:
+        print(
+            '\n =====OUVIDORIA ABC=====\n \n 1) LISTAR TODAS AS MANIFESTAÇÕES \n '
+            '2) ENVIAR UMA MANIFESTAÇÃO (criar uma nova)'
+            '\n 3) PESQUISAR PELO NÚMERO DE PROTOCOLO (ID)\n 4) SAIR\n')
 
-    if opcao == 1:
-        nomes = input('DIGITE O SEU NOME: ')
-        nome.append([nomes])
-        tipo = int(input('DIGITE O TIPO DA MANIFESTAÇÃO: 1) PARA RECLAMAÇÃO, 2) PARA SUJESTÃO E 3)ELOGIO: '))
-        if tipo == 1:
-            print('\033[1;35m''VOCÊ SELECIONOU RECLAMAÇÃO.''\033[0;0m')
-            addreclamacao = str(input('DIGITE A DESCRIÇÃO: '))
-            reclamacoes.append([addreclamacao])
+    if option == 1:
 
-        elif tipo == 2:
-            print('\033[1;35m''VOCÊ SELECIONOU SUJESTÃO.''\033[0;0m')
-            addsujestao = str(input('DIGITE A DESCRIÇÃO: '))
-            sujestoes.append([addsujestao])
+        searchInput = int(input(
+            '\nDIGITE O TIPO DA MANIFESTAÇÃO QUE VOCÊ DESEJA VER:\n 1)RECLAMAÇÕES \n 2)SUJESTÕES '
+            '\n 3)ELOGIOS \n \nQUAL SUA ESCOLHA?: '))
 
-        else:
-            print('\033[1;35m''VOCÊ SELECIONOU ELOGIO.''\033[0;0m')
-            addelogio = str(input('DIGITE A DESCRIÇÃO: '))
-            elogios.append([addelogio])
-    elif opcao == 2:
-        print(f'NOME DO REQUISITANTE:{nome}, E A SUJESTÃO FOI: {sujestoes}')
+        search = ''
 
-    elif opcao == 3:
-        print(f'NOME DO REQUISITANTE: {nome}, E A RECLAMAÇÃO FOI: {reclamacoes}')
+        if searchInput == 1:
+            search = 'claim'
+        elif searchInput == 2:
+            search = 'suggestion'
+        elif searchInput == 3:
+            search = 'compliment'
 
-    elif opcao == 4:
-        print(f'NOME DO REQUISITANTE: {nome}, E O ELOGIO FOI: {elogios}')
+        for element in listOfAllManifestations:
+            if element.type == search:
+                print(f'\nNome: {element.name}\nProtocolo: {element.protocol}\nConteúdo: {element.content}\n')
 
-    elif opcao == 5:
-        print()
-        nomes = input('\033[1;95m''DIGITE O SEU NOME: ''\033[0;0m')
-        nome.append([nomes])
-        tipo = int(input('\033[1;95m''DIGITE O TIPO DA MANIFESTAÇÃO: 1) PARA RECLAMAÇÃO, 2) PARA SUJESTÃO E 3)ELOGIO: '
-                         '\033[0;0m'))
-        if tipo == 1:
-            print('\033[1;35m''VOCÊ SELECIONOU RECLAMAÇÃO.''\033[0;0m')
-            addreclamacao = str(input('DIGITE A DESCRIÇÃO: '))
-            reclamacoes.append([addreclamacao])
+        keep = False
+        while not keep:
+            keepInput = int(input('Continuar? Sim (1) / Não (0)\n '))
+            if keepInput == 1:
+                option = 5
+                keep = True
+            elif keepInput == 0:
+                option = 4
+                keep = True
 
-        elif tipo == 2:
-            print('\033[1;35m''VOCÊ SELECIONOU SUJESTÃO.''\033[0;0m')
-            addsujestao = str(input('DIGITE A DESCRIÇÃO: '))
-            sujestoes.append([addsujestao])
+    if option == 2:
+        nameInput = input('QUAL SEU NOME?: ')
+        typeNum = int(input(
+            '\n DIGITE O TIPO DA MANIFESTAÇÃO QUE VOCÊ DESEJA ENVIAR:\n 1)RECLAMAÇÕES \n 2)SUJESTÕES \n 3)ELOGIOS \n'
+            ' \nQUAL SUA ESCOLHA?: '))
+        contentInput = input('\nQUAL A MANIFESTAÇÃO QUE VOCÊ DESEJA FAZER? ')
+        protocolInput = input('\nESCOLHA UM NÚMERO PARA O PROTOCOLO DA SUA MANIFESTAÇÃO: ')
 
-        else:
-            print('\033[1;35m''VOCÊ SELECIONOU ELOGIO.''\033[0;0m')
-            addelogio = str(input('DIGITE A DESCRIÇÃO: '))
-            elogios.append([addelogio])
-    elif opcao == 6:
-        print()
-        protocolo = int(input('DIGITE O NUMERO DO PROTOCOLO DESEJADO: '))
-    else:
+        typeInput = ''
+
+        if typeNum == 1:
+            typeInput = 'claim'
+        elif typeNum == 2:
+            typeInput = 'suggestion'
+        elif typeNum == 3:
+            typeInput = 'compliment'
+
+        listOfAllManifestations.append(manifestation(typeInput, nameInput, protocolInput, contentInput))
+
+        option = 5
+
+    elif option == 4:
         break
+
+    else:
+        aa = int(input('DIGITE A OPÇÃO DESEJADA: '))
+        option = aa
+        pass
