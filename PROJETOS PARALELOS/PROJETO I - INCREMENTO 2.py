@@ -16,7 +16,7 @@ class manifestation(object):
 while True:
     if 0 < option > 4:
         print(
-            '\n =====OUVIDORIA ABC=====\n \n 1) LISTAR TODAS AS MANIFESTAÇÕES \n '
+            '\n \033[1;34m =====OUVIDORIA ABC=====\n \n 1) LISTAR TODAS AS MANIFESTAÇÕES \n '
             '2) ENVIAR UMA MANIFESTAÇÃO (criar uma nova)'
             '\n 3) PESQUISAR PELO NÚMERO DE PROTOCOLO (ID)\n 4) SAIR\n')
 
@@ -48,6 +48,10 @@ while True:
             elif keepInput == 0:
                 option = 4
                 keep = True
+            print(
+                '\n \033[1;34m =====OUVIDORIA ABC=====\n \n 1) LISTAR TODAS AS MANIFESTAÇÕES \n '
+                '2) ENVIAR UMA MANIFESTAÇÃO (criar uma nova)'
+                '\n 3) PESQUISAR PELO NÚMERO DE PROTOCOLO (ID)\n 4) SAIR\n')
 
     if option == 2:
         nameInput = input('QUAL SEU NOME?: ')
