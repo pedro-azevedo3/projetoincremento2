@@ -1,87 +1,129 @@
 '''
 GRUPO: PEDRO AZEVEDO TEIXEIRA, GUILHERME SILVA BARBOSA, RODRIGO DELGADO
        MARCOS AURÉLIO SEGUNDO E GUILHERME LEONARDO ALVES.
+CÓDIGO FEITO POR: RODRIGO DELGADO E REVISADO POR PEDRO AZEVEDO TEIXEIRA.
 '''
 
-option = 5
-listOfAllManifestations = []
+manifestacoes = ['1#Rodrigo#Reclamação#Falta de agua#Está faltando água nos bebedouros!',
+                 '2#Pedro#Sugestão#Mais computadores na sala'
+                 '#Seria bom que tivesse mais computadores na sala de aula',
+                 '3#Segundo#Elogio#Obrigado#Estou satisfeito com a metodologia de ensino dos professores']
+opcao = 0
 
+comprimentoLinha = 65
 
-class manifestation(object):
-    def __init__(self, typeInput, NameInput, protocolInput, content):
-        self.type = typeInput
-        self.name = NameInput
-        self.protocol = protocolInput
-        self.content = content
+linha = '-' * comprimentoLinha
 
+print('\033[33m''Bem vindo à Ouvidoria ABC!'.center(comprimentoLinha))
 
-while True:
-    if 0 < option > 4:
-        print(
-            '\n \033[1;34m =====OUVIDORIA ABC=====\n \n 1) LISTAR TODAS AS MANIFESTAÇÕES \n '
-            '2) ENVIAR UMA MANIFESTAÇÃO (criar uma nova)'
-            '\n 3) PESQUISAR PELO NÚMERO DE PROTOCOLO (ID)\n 4) SAIR \n')
+while opcao >= 1 or opcao <= 7:
+    print(linha)
+    print('\033[33m''MENU'.center(comprimentoLinha))
+    print(linha)
+    print('[1] Listar manifestações')
+    print('[2] Listar sugestões')
+    print('[3] Listar reclamações')
+    print('[4] Listar elogios')
+    print('[5] Nova manifestação')
+    print('[6] Buscar manifestação por número de protocolo')
+    print('[7] Sair')
+    print(linha)
+    opcao = int(input('Digite o número correspondente à opção desejada: '))
+    print(linha)
 
-    if option == 1:
+    if opcao == 1:
+        print('\033[33m''MANIFESTAÇÕES'.center(comprimentoLinha))
+        print(linha)
+        for manifestacao in manifestacoes:
+            infos = manifestacao.split('#')
+            print('\033[1;36m''Protocolo', infos[0])
+            print('Nome: ', infos[1])
+            print('Tipo: ', infos[2])
+            print('Título: ', infos[3])
+            print('Descrição: ', infos[4])
+            print(linha)
 
-        searchInput = int(input(
-            '\nDIGITE O TIPO DA MANIFESTAÇÃO QUE VOCÊ DESEJA VER:\n 1)RECLAMAÇÕES \n 2)SUJESTÕES '
-            '\n 3)ELOGIOS \n 4)TODAS AS MANIFESTAÇÕES REALIZADAS \n 5)SAIR \n'))
+    elif opcao == 2:
+        print('SUGESTÕES'.center(comprimentoLinha))
+        print(linha)
+        for manifestacao in manifestacoes:
+            infos = manifestacao.split('#')
+            tipo = infos[2]
+            if tipo == 'Sugestão':
+                print('\033[1;36m''Protocolo', infos[0])
+                print('Nome: ', infos[1])
+                print('Título: ', infos[3])
+                print('Descrição: ', infos[4])
+                print(linha)
 
-        search = ''
+    elif opcao == 3:
+        print('RECLAMAÇÕES'.center(comprimentoLinha))
+        print(linha)
+        for manifestacao in manifestacoes:
+            infos = manifestacao.split('#')
+            tipo = infos[2]
+            if tipo == 'Reclamação':
+                print('\033[1;36m''Protocolo', infos[0])
+                print('Nome: ', infos[1])
+                print('Título: ', infos[3])
+                print('Descrição: ', infos[4])
+                print(linha)
 
-        if searchInput == 1:
-            search = 'claim'
-        elif searchInput == 2:
-            search = 'suggestion'
-        elif searchInput == 3:
-            search = 'compliment'
-        elif searchInput == 4:
-            print(listOfAllManifestations)
+    elif opcao == 4:
+        print('ELOGIOS'.center(comprimentoLinha))
+        print(linha)
+        for manifestacao in manifestacoes:
+            infos = manifestacao.split('#')
+            tipo = infos[2]
+            if tipo == 'Elogio':
+                print('\033[1;36m''Protocolo', infos[0])
+                print('Nome: ', infos[1])
+                print('Título: ', infos[3])
+                print('Descrição: ', infos[4])
+                print(linha)
 
-        for element in listOfAllManifestations:
-            if element.type == search:
-                print(f'\nNome: {element.name}\nProtocolo: {element.protocol}\nConteúdo: {element.content}\n')
+    elif opcao == 5:
+        print('NOVA MANIFESTAÇÃO'.center(comprimentoLinha))
+        print(linha)
+        protocolo = len(manifestacoes) + 1
+        opcaoTipo = 0
+        tipo = ""
+        nome = input('\033[1;36m''Digite seu nome: ')
+        print('\033[1;36m''1) Sugestão 2) Reclamação 3) Elogio')
 
-        keep = False
-        while not keep:
-            keepInput = int(input('Continuar? Sim (1) / Não (0)\n '))
-            if keepInput == 1:
-                option = 6
-                keep = True
-            elif keepInput == 0:
-                option = 5
-                keep = True
-            print(
-                '\n \033[1;34m =====OUVIDORIA ABC=====\n \n 1) LISTAR TODAS AS MANIFESTAÇÕES \n '
-                '2) ENVIAR UMA MANIFESTAÇÃO (criar uma nova)'
-                '\n 3) PESQUISAR PELO NÚMERO DE PROTOCOLO (ID)\n 4) SAIR\n')
+        while opcaoTipo < 1 or opcaoTipo > 3:
+            opcaoTipo = int(input('Digite o número equivalente ao tipo de manifestação: '))
+            if opcaoTipo == 1:
+                tipo = "Sugestão"
+            elif opcaoTipo == 2:
+                tipo = "Reclamação"
+            else:
+                tipo = "Elogio"
 
-    if option == 2:
-        nameInput = input('QUAL SEU NOME?: ')
-        typeNum = int(input(
-            '\n DIGITE O TIPO DA MANIFESTAÇÃO QUE VOCÊ DESEJA ENVIAR:\n 1)RECLAMAÇÕES \n 2)SUJESTÕES \n 3)ELOGIOS \n'
-            ' \nQUAL SUA ESCOLHA?: '))
-        contentInput = input('\nQUAL A MANIFESTAÇÃO QUE VOCÊ DESEJA FAZER? ')
-        protocolInput = input('\nESCOLHA UM NÚMERO PARA O PROTOCOLO DA SUA MANIFESTAÇÃO: ')
+        titulo = input('Digite o título da sua manifestação: ')
+        descricao = input('Digite a descrição da sua manifestação: ')
+        manifestacoes.append(str(protocolo) + '#' + nome + '#' + tipo + '#' + titulo + '#' + descricao)
 
-        typeInput = ''
+    elif opcao == 6:
+        print('Buscar manifestações por protocolo'.center(comprimentoLinha))
+        print(linha)
+        numProtocolo = int(input('\033[1;36m''Digite o número do protocolo: '))
 
-        if typeNum == 1:
-            typeInput = 'claim'
-        elif typeNum == 2:
-            typeInput = 'suggestion'
-        elif typeNum == 3:
-            typeInput = 'compliment'
+        if numProtocolo > len(manifestacoes):
+            print(linha)
+            print('	\033[1;31m''PROTOCOLO NÃO ENCONTRADO!'.center(comprimentoLinha))
+        else:
+            print(linha)
+            infos = manifestacoes[numProtocolo - 1].split('#')
+            print('\033[1;36m''Protocolo', infos[0])
+            print('Nome: ', infos[1])
+            print('Tipo: ', infos[2])
+            print('Título: ', infos[3])
+            print('Descrição: ', infos[4])
+            print(linha)
 
-        listOfAllManifestations.append(manifestation(typeInput, nameInput, protocolInput, contentInput))
-
-        option = 5
-
-    elif option == 4:
+    elif opcao == 7:
+        print('\033[1;36m''Obrigado por utilizar o sistema de Ouvidoria ABC!'.center(comprimentoLinha))
         break
-
     else:
-        aa = int(input('DIGITE A OPÇÃO DESEJADA: '))
-        option = aa
-        pass
+        print('\033[1;31m''ENTRADA INVÁLIDA!'.center(comprimentoLinha))
