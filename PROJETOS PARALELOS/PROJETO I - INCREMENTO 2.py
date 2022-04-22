@@ -1,14 +1,7 @@
-'''
-GRUPO: PEDRO AZEVEDO TEIXEIRA, GUILHERME SILVA BARBOSA, RODRIGO DELGADO
-       MARCOS AURÉLIO SEGUNDO E GUILHERME LEONARDO ALVES.
-CÓDIGO FEITO POR: RODRIGO DELGADO E REVISADO POR PEDRO AZEVEDO TEIXEIRA.
-'''
-
 manifestacoes = ['1#Rodrigo#Reclamação#Falta de agua#Está faltando água nos bebedouros!',
                  '2#Pedro#Sugestão#Mais computadores na sala'
                  '#Seria bom que tivesse mais computadores na sala de aula',
                  '3#Segundo#Elogio#Obrigado#Estou satisfeito com a metodologia de ensino dos professores']
-opcao = 0
 
 comprimentoLinha = 65
 
@@ -16,7 +9,7 @@ linha = '-' * comprimentoLinha
 
 print('\033[33m''Bem vindo à Ouvidoria ABC!'.center(comprimentoLinha))
 
-while opcao >= 1 or opcao <= 7:
+while True:
     print(linha)
     print('\033[33m''MENU'.center(comprimentoLinha))
     print(linha)
