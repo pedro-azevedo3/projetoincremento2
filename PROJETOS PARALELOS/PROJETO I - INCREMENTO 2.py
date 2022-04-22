@@ -1,3 +1,9 @@
+'''
+GRUPO: Pedro Azevedo Teixera, Rodrigo Delgado Silva, Guilherme Silva Barbosa
+        Marcos Aurélio de Oliveira Segundo e Guilherme Leonardo Alves.
+CÓDIGO POR: Rodrigo Delgado
+REVISADO POR: Pedro Azevedo Teixeira
+'''
 manifestacoes = ['1#Rodrigo#Reclamação#Falta de agua#Está faltando água nos bebedouros!',
                  '2#Pedro#Sugestão#Mais computadores na sala'
                  '#Seria bom que tivesse mais computadores na sala de aula',
