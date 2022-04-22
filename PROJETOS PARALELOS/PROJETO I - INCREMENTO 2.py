@@ -1,5 +1,7 @@
-from encodings import search_function
-from msilib.schema import Class
+'''
+GRUPO: PEDRO AZEVEDO TEIXEIRA, GUILHERME SILVA BARBOSA, RODRIGO DELGADO
+       MARCOS AURÉLIO SEGUNDO E GUILHERME LEONARDO ALVES.
+'''
 
 option = 5
 listOfAllManifestations = []
@@ -18,13 +20,13 @@ while True:
         print(
             '\n \033[1;34m =====OUVIDORIA ABC=====\n \n 1) LISTAR TODAS AS MANIFESTAÇÕES \n '
             '2) ENVIAR UMA MANIFESTAÇÃO (criar uma nova)'
-            '\n 3) PESQUISAR PELO NÚMERO DE PROTOCOLO (ID)\n 4) SAIR\n')
+            '\n 3) PESQUISAR PELO NÚMERO DE PROTOCOLO (ID)\n 4) SAIR \n')
 
     if option == 1:
 
         searchInput = int(input(
             '\nDIGITE O TIPO DA MANIFESTAÇÃO QUE VOCÊ DESEJA VER:\n 1)RECLAMAÇÕES \n 2)SUJESTÕES '
-            '\n 3)ELOGIOS \n \nQUAL SUA ESCOLHA?: '))
+            '\n 3)ELOGIOS \n 4)TODAS AS MANIFESTAÇÕES REALIZADAS \n 5)SAIR \n'))
 
         search = ''
 
@@ -34,6 +36,8 @@ while True:
             search = 'suggestion'
         elif searchInput == 3:
             search = 'compliment'
+        elif searchInput == 4:
+            print(listOfAllManifestations)
 
         for element in listOfAllManifestations:
             if element.type == search:
@@ -43,10 +47,10 @@ while True:
         while not keep:
             keepInput = int(input('Continuar? Sim (1) / Não (0)\n '))
             if keepInput == 1:
-                option = 5
+                option = 6
                 keep = True
             elif keepInput == 0:
-                option = 4
+                option = 5
                 keep = True
             print(
                 '\n \033[1;34m =====OUVIDORIA ABC=====\n \n 1) LISTAR TODAS AS MANIFESTAÇÕES \n '
