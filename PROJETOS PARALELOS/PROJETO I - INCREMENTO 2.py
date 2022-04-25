@@ -108,7 +108,7 @@ while True:
         print(linha)
         numProtocolo = int(input('\033[1;36m''Digite o número do protocolo: '))
 
-        if numProtocolo > len(manifestacoes):
+        if numProtocolo < 1 or numProtocolo > len(manifestacoes):
             print(linha)
             print('	\033[1;31m''PROTOCOLO NÃO ENCONTRADO!'.center(comprimentoLinha))
         else:
